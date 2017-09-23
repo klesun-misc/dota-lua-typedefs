@@ -6,16 +6,37 @@
 	
 	// parses https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API page
 	let parsePage = function(root) {
+		/** @param sig = 'Vector __add(Vector a, Vector b)' */
+		let parseSig = (sig) => {
+			let parseArg = (argToken) => {
+				let pair = argToken.trim().split(/\s+/);
+				let [type, name] = pair.length === 2 ? pair : ['', pair[0]];
+				return {type: type, name: name};
+			};
+			let matches = sig.match(/(\w+)\s+(\w+)\(([\s\w,]*)\)/);
+			if (matches !== null) {
+				let [_, ret, name, argStr] = matches;
+				return {
+					returnType: ret,
+					name: name,
+					args: argStr ? argStr.split(',').map(parseArg) : [],
+				};
+			} else {
+				return null;
+			}
+		};
+		
 		let parseTable = (table) => $$(':scope > tbody > tr', table)
 			.filter(tr => $$('th', tr).length === 0)
 			.map(tr => {
-				let [fn, sig, descr] = $$(':scope > td', tr);				
+				let [fn, sig, desc] = $$(':scope > td', tr);				
 				let a = $$('a', fn)[0];				
 				return {
 					name: fn.innerText.trim(),
 					url: a ? a.href : null,
 					sig: sig.innerText.trim(),
-					desc: descr.innerText.trim(),
+					sigParsed: parseSig(sig.innerText.trim()),
+					desc: desc.innerText.trim(),
 				};
 			});
 		
@@ -42,7 +63,7 @@
 					.map(a => a.trim())
 					.filter(a => a)
 					.forEach(comment => {
-						let matches = comment.match(/Global accessor variable:\s*(\S+)/);
+						let matches = comment.match(/Global accessor variable:\s*(\w+)/);
 						if (matches !== null) {
 							let varName = matches[1];
 							nextSection.varName = varName !== 'Unknown' ? varName : null;
@@ -52,7 +73,7 @@
 						}
 					});
 			} else if (tag.tagName.toLowerCase() === 'dl') {
-				let matches = tag.innerText.match(/extends\s*(\S+)/);
+				let matches = tag.innerText.match(/extends\s*([A-Za-z]\w+)/);
 				if (matches !== null) {
 					let clsName = matches[1];
 					nextSection.baseCls = clsName;
@@ -70,18 +91,31 @@
 	
 	let makeLuaCode = function(sections) {
 		let makeFuncDefCode = (def) => {
-			let code = '';
-			code += (def.desc || '').split('\n')
-				.map(a => a.trim())
-				.filter(a => a)
-				.map(desc => '-- ' + desc + '\n')
-				.join('');
-			if (def.url) {
-				code += '-- @see ' + def.url + '\n';
-			}
-			code += '-- ' + def.sig + '\n';
-			code += 'function ' + def.name + '()\n    -- built-in implementation\nend\n';
-			return code;
+			let makeArgDoc = (arg) => {
+				// some api var names consist of just type, 
+				// no point specifying it again in such cases
+				if (arg.name.startsWith(arg.type + '_')) {
+					return null;
+				} else {
+					return '--@param ' + arg.name + ' ' + arg.type;
+				}
+			};
+			let sigParsed = def.sigParsed;
+			let ret = sigParsed ? sigParsed.returnType : null;
+			let args = sigParsed ? sigParsed.args : [];
+			let argStr = args.map(a => a.name).join(', ');
+			return [].concat(
+				(def.desc || '')
+					.split('\n')
+					.map(a => a.trim())
+					.filter(a => a)
+					.map(desc => '-- ' + desc),
+				def.url ? ['--@see '] + def.url : [],
+				args.map(makeArgDoc).filter(a => a),
+				ret ? ['--@return '] + ret : [],
+				!sigParsed ? ['-- ' + def.sig] : [],
+				['function ' + def.name + '(' + argStr + ') --[[ built-in ]] end\n'],
+			).filter(a => a).join('\n');
 		};
 
 		let makeConstDefCode = (def) => {
@@ -129,7 +163,7 @@
 	};
 	
 	let parsed = parsePage(document);
-	console.log(parsePage(document));
 	let code = makeLuaCode(parsed);
 	console.log('generated lua code', code.split('\n'));
+	console.log('parsed page', parsed);
 })();
