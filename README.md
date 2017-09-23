@@ -1,6 +1,6 @@
 This is Lua function/class/constant/vars definition generated from [valve's documentation](https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API).
 
-Add `dota_typedefs.lua` file somewhere inside your project and your IDE should start suggesting you completions and "Go To Definition"-s for functions like `GameRules:ShowGenericPopup()`
+Add `dota_typedefs.lua` file somewhere inside your project and your IDE should start suggesting you completions and "Go To Definition"-s for functions like `GameRules:ShowGenericPopup()`. But make sure not to actually require this file in your code, cuz it would overwrite global variables.
 
 Tested using IDEA with EmmyLua plugin.
 
