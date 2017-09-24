@@ -66,7 +66,7 @@ function CreateEffect(handle_1) --[[ built-in ]] end
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.CreateHeroForPlayer
 ---@param unitName string
 ---@param player handle
----@return handle
+---@return CDOTA_BaseNPC_Hero
 function CreateHeroForPlayer(unitName, player) --[[ built-in ]] end
 
 -- Create an HTTP request. Recently renamed from CreateHTTPRequest.
@@ -79,13 +79,14 @@ function CreateHTTPRequestScriptVM(string_1, string_2) --[[ built-in ]] end
 ---@param item_name string
 ---@param owner handle
 ---@param owner handle
----@return handle
+---@return CDOTA_Item
 function CreateItem(item_name, owner, owner) --[[ built-in ]] end
 
 -- Create a physical item at a given location, can start in air (but doesn't clear a space)
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.CreateItemOnPositionForLaunch
----@return handle
-function CreateItemOnPositionForLaunch(Vector_1, handle_2) --[[ built-in ]] end
+---@param item CDOTA_Item
+---@return handle 
+function CreateItemOnPositionForLaunch(Vector_1, item) --[[ built-in ]] end
 
 -- Create a physical item at a given location
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.CreateItemOnPositionSync
@@ -277,7 +278,7 @@ function EmitSoundOnLocationWithCaster(Vector_1, string_2, handle_3) --[[ built-
 
 -- Turn an entity index integer to an HScript representing that entity's script instance.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.EntIndexToHScript
----@return handle
+---@return CDOTA_BaseNPC
 function EntIndexToHScript(int_1) --[[ built-in ]] end
 
 -- Issue an order from a script table
@@ -3515,7 +3516,7 @@ function CDOTA_BaseNPC:AddAbility(pszAbilityName) --[[ built-in ]] end
 
 -- Add the passed item handler to this unit's inventory.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC.AddItem
----@param hItem handle
+---@param hItem CDOTA_Item
 ---@return handle
 function CDOTA_BaseNPC:AddItem(hItem) --[[ built-in ]] end
 
@@ -7520,7 +7521,7 @@ function Convars:GetStr(variableName) --[[ built-in ]] end
 ---@param helpText string
 ---@param flags int
 ---@return void
-function Convars:RegisterCommand(variableName, function, helpText, flags) --[[ built-in ]] end
+function Convars:RegisterCommand(variableName, funct, helpText, flags) --[[ built-in ]] end
 
 -- RegisterConvar(name, defaultValue, helpString, flags): register a new console variable.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Convars.RegisterConvar
