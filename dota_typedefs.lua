@@ -115,8 +115,13 @@ function CreateTriggerRadiusApproximate(Vector_1, float_2) --[[ built-in ]] end
 
 -- Creates a DOTA unit by its dota_npc_units.txt name ( szUnitName, vLocation, bFindClearSpace, hNPCOwner, hUnitOwner, iTeamNumber )
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.CreateUnitByName
----@return handle
-function CreateUnitByName(string_1, Vector_2, bool_3, handle_4, handle_5, int_6) --[[ built-in ]] end
+---@param name string
+---@param position Vector
+---@param parent_1 CDOTA_BaseNPC
+---@param parent_2 CDOTA_BaseNPC
+---@param team int
+---@return CDOTA_BaseNPC
+function CreateUnitByName(name, position, bool_3, parent_1, parent_2, team) --[[ built-in ]] end
 
 -- Creates a DOTA unit by its dota_npc_units.txt name ( szUnitName, vLocation, bFindClearSpace, hNPCOwner, hUnitOwner, iTeamNumber, hCallback )
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Global.CreateUnitByNameAsync
@@ -3659,7 +3664,7 @@ function CDOTA_BaseNPC:EjectItemFromStash(hItem) --[[ built-in ]] end
 -- Retrieve an ability by name from the unit.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC.FindAbilityByName
 ---@param pAbilityName string
----@return handle
+---@return CDOTABaseAbility
 function CDOTA_BaseNPC:FindAbilityByName(pAbilityName) --[[ built-in ]] end
 
 -- Returns a table of all of the modifiers on the NPC.
@@ -7558,8 +7563,7 @@ function Convars:SetStr(string_1, string_2) --[[ built-in ]] end
 ConVars = Convars()
 
 -- Vector class
-
-Vector = class({})
+Vector = function(x,y,z) --[[class initialisation]] end
 
 -- Overloaded +. Adds vectors together
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Vector._add
@@ -7639,7 +7643,6 @@ function Vector:Length2D() --[[ built-in ]] end
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Vector.Normalized
 ---@return Vector
 function Vector:Normalized() --[[ built-in ]] end
-Vector = Vector()
 
 -- A tree on the map
 
