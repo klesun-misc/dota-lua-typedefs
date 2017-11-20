@@ -1551,7 +1551,7 @@ function CEntities:FindByModelWithin(startFrom, modelName, origin, maxRadius) --
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CEntities.FindByName
 ---@param lastEnt handle
 ---@param searchString string
----@return handle
+---@return CBaseEntity
 function CEntities:FindByName(lastEnt, searchString) --[[ built-in ]] end
 
 -- Find entities by name nearest to a point.
@@ -1575,7 +1575,7 @@ function CEntities:FindByNameWithin(startFrom, name, origin, maxRadius) --[[ bui
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CEntities.FindByTarget
 ---@param startFrom handle
 ---@param targetName string
----@return handle
+---@return CBaseEntity
 function CEntities:FindByTarget(startFrom, targetName) --[[ built-in ]] end
 
 -- Find entities within a radius. Pass nil to start an iteration, or reference to a previously found entity to continue a search
@@ -2305,7 +2305,7 @@ function CDOTABaseAbility:UseResources(bMana, bGold, bCooldown) --[[ built-in ]]
 
 -- No Description Set
 
-CDOTA_Ability_Animation_Attack = class(CDOTABaseAbility)
+CDOTA_Ability_Animation_Attack = CDOTABaseAbility
 
 -- Override playbackrate
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Animation_Attack.SetPlaybackRate
@@ -2315,7 +2315,7 @@ function CDOTA_Ability_Animation_Attack:SetPlaybackRate(flRate) --[[ built-in ]]
 
 -- No Description Set
 
-CDOTA_Ability_Animation_TailSpin = class(CDOTABaseAbility)
+CDOTA_Ability_Animation_TailSpin = CDOTABaseAbility
 
 -- Override playbackrate
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Animation_TailSpin.SetPlaybackRate
@@ -2325,7 +2325,7 @@ function CDOTA_Ability_Animation_TailSpin:SetPlaybackRate(flRate) --[[ built-in 
 
 -- No Description Set
 
-CDOTA_Ability_Nian_Leap = class(CDOTABaseAbility)
+CDOTA_Ability_Nian_Leap = CDOTABaseAbility
 
 -- Override playbackrate
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Nian_Leap.SetPlaybackRate
@@ -2335,7 +2335,7 @@ function CDOTA_Ability_Nian_Leap:SetPlaybackRate(flRate) --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Ability_Nian_Dive = class(CDOTABaseAbility)
+CDOTA_Ability_Nian_Dive = CDOTABaseAbility
 
 -- Override playbackrate
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Nian_Dive.SetPlaybackRate
@@ -2345,7 +2345,7 @@ function CDOTA_Ability_Nian_Dive:SetPlaybackRate(flRate) --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Ability_Nian_Roar = class(CDOTABaseAbility)
+CDOTA_Ability_Nian_Roar = CDOTABaseAbility
 
 -- Number of times Nian has used the roar
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Nian_Roar.GetCastCount
@@ -2354,7 +2354,7 @@ function CDOTA_Ability_Nian_Roar:GetCastCount() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Item = class(CDOTABaseAbility)
+CDOTA_Item = CDOTABaseAbility
 
 -- Get the container for this item.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Item.GetContainer
@@ -2519,7 +2519,7 @@ function CDOTA_Item:Think() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Item_Physical = class(CBaseAnimating)
+CDOTA_Item_Physical = CBaseAnimating
 
 -- Returned the contained item.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Item_Physical.GetContainedItem
@@ -2539,7 +2539,7 @@ function CDOTA_Item_Physical:SetContainedItem(hItem) --[[ built-in ]] end
 
 -- '
 
-CDOTA_Item_DataDriven = class(CDOTA_Item)
+CDOTA_Item_DataDriven = CDOTA_Item
 
 -- Applies a data driven modifier to the target
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Item_DataDriven.ApplyDataDrivenModifier
@@ -2561,7 +2561,7 @@ function CDOTA_Item_DataDriven:ApplyDataDrivenThinker(hCaster, vLocation, pszMod
 
 -- No Description Set
 
-CDOTA_Unit_Nian = class(CDOTA_BaseNPC_Creature)
+CDOTA_Unit_Nian = CDOTA_BaseNPC_Creature
 
 -- Is the Nian horn?
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Unit_Nian.GetHorn
@@ -2585,7 +2585,7 @@ function CDOTA_Unit_Nian:IsTailAlive() --[[ built-in ]] end
 
 -- No Description Set
 
-CBasePlayer = class({})
+CBasePlayer = {}
 
 -- Returns the HMD Avatar entity for this player if it exists.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBasePlayer.GetHMDAvatar
@@ -2622,7 +2622,7 @@ function CBasePlayer:Quit() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTAPlayer = class(CBaseAnimating)
+CDOTAPlayer = CBaseAnimating
 
 -- Get the player's hero.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTAPlayer.GetAssignedHero
@@ -2659,7 +2659,7 @@ function CDOTAPlayer:SetMusicStatus(nMusicStatus, flIntensity) --[[ built-in ]] 
 
 -- No Description Set
 
-CDOTA_PlayerResource = class(CBaseEntity)
+CDOTA_PlayerResource = CBaseEntity
 
 -- No Description Set
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_PlayerResource.AddAegisPickup
@@ -2987,7 +2987,7 @@ function CDOTA_PlayerResource:GetOriginalLobbyTeam(iPlayerID) --[[ built-in ]] e
 -- No Description Set
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_PlayerResource.GetPlayer
 ---@param playerID int
----@return handle
+---@return CDOTAPlayer
 function CDOTA_PlayerResource:GetPlayer(playerID) --[[ built-in ]] end
 
 -- Includes spectators and players not assigned to a team
@@ -3511,7 +3511,7 @@ PlayerResource = CDOTA_PlayerResource()
 
 -- '
 
-CDOTA_BaseNPC = class(CBaseFlex)
+CDOTA_BaseNPC = CBaseFlex
 
 -- Add an ability to this unit by name.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC.AddAbility
@@ -5083,7 +5083,7 @@ function CDOTA_BaseNPC:UnitCanRespawn() --[[ built-in ]] end
 
 -- '
 
-CDOTA_BaseNPC_Hero = class(CDOTA_BaseNPC)
+CDOTA_BaseNPC_Hero = CDOTA_BaseNPC
 
 -- Adds experience to this unit.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC_Hero.AddExperience
@@ -5611,7 +5611,7 @@ function CDOTA_BaseNPC_Hero:WillReincarnate() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_BaseNPC_Creature = class(CDOTA_BaseNPC)
+CDOTA_BaseNPC_Creature = CDOTA_BaseNPC
 
 -- Add the specified item drop to this creature
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC_Creature.AddItemDrop
@@ -5710,7 +5710,7 @@ function CDOTA_BaseNPC_Creature:SetXPGain(nXPGain) --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_BaseNPC_Building = class(CDOTA_BaseNPC)
+CDOTA_BaseNPC_Building = CDOTA_BaseNPC
 
 -- Get the invulnerability count for a building.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_BaseNPC_Building.GetInvulnCount
@@ -5725,7 +5725,7 @@ function CDOTA_BaseNPC_Building:SetInvulnCount(nInvulnCount) --[[ built-in ]] en
 
 -- No Description Set
 
-CDOTABaseGameMode = class(CBaseEntity)
+CDOTABaseGameMode = CBaseEntity
 
 -- Clear the script filter that controls the tuning values abilities use.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTABaseGameMode.ClearAbilityTuningValueFilter
@@ -6173,7 +6173,7 @@ function CDOTABaseGameMode:SetUseCustomHeroLevels(bEnabled) --[[ built-in ]] end
 
 -- A quest, as seen in the Tutorial and Frostivus. WARNING: Quest system is deprecated since 7.00 and will NOT work
 
-CDotaQuest = class(CBaseEntity)
+CDotaQuest = CBaseEntity
 
 -- Add a subquest to this quest
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDotaQuest.AddSubquest
@@ -6219,7 +6219,7 @@ function CDotaQuest:SetTextReplaceValue(valueSlot, value) --[[ built-in ]] end
 
 -- No Description Set
 
-CDotaSubquestBase = class(CDotaQuest)
+CDotaSubquestBase = CDotaQuest
 
 -- Mark this subquest complete
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDotaSubquestBase.CompleteSubquest
@@ -6241,7 +6241,7 @@ function CDotaSubquestBase:SetTextReplaceValue(valueSlot, value) --[[ built-in ]
 
 -- No Description Set
 
-CPhysicsComponent = class({})
+CPhysicsComponent = {}
 
 -- Do an instant (i.e. blocking) Ray Cast. Will do a handle/queue version later. Don't plan to use this for real!
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CPhysicsComponent.ExpensiveInstantRayCast
@@ -6250,7 +6250,7 @@ function CPhysicsComponent:ExpensiveInstantRayCast(Vector_1, Vector_2, handle_3)
 
 -- No Description Set
 
-CPointTemplate = class({})
+CPointTemplate = {}
 
 -- DeleteCreatedSpawnGroups() : Deletes any spawn groups that this point_template has spawned. Note: The point_template will not be deleted by this.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CPointTemplate.DeleteCreatedSpawnGroups
@@ -6276,7 +6276,7 @@ function CPointTemplate:SetSpawnCallback(hCallbackFunc, hCallbackScope) --[[ bui
 
 -- No Description Set
 
-CBodyComponent = class({})
+CBodyComponent = {}
 
 -- Apply an impulse at a worldspace position to the physics
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBodyComponent.AddImpulseAtPosition
@@ -6341,7 +6341,7 @@ function CBodyComponent:SetVelocity(velocity) --[[ built-in ]] end
 
 -- A class containing functions involved in animations
 
-CBaseAnimating = class(CBaseEntity)
+CBaseAnimating = CBaseEntity
 
 -- Get the attachement id's angles as a p,y,r vector
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBaseAnimating.GetAttachmentAngles
@@ -6405,7 +6405,7 @@ function CBaseAnimating:StopAnimation() --[[ built-in ]] end
 
 -- No Description Set
 
-CBaseCombatCharacter = class({})
+CBaseCombatCharacter = {}
 
 -- GetEquippedWeapons() : Returns an array of all the equipped weapons
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBaseCombatCharacter.GetEquippedWeapons
@@ -6425,7 +6425,7 @@ function CBaseCombatCharacter:ShootPosition(nHand) --[[ built-in ]] end
 
 -- The projectile manager, it manages projectiles.
 
-ProjectileManager = class({})
+ProjectileManager = {}
 
 -- Update speed
 ---@see https://developer.valvesoftware.com/w/index.php?title=Dota_2_Workshop_Tools/Scripting/API/ProjectileManager.ChangeTrackingProjectileSpeed&action=edit&redlink=1
@@ -6462,7 +6462,7 @@ function ProjectileManager:ProjectileDodge(handle_1) --[[ built-in ]] end
 
 -- No Description Set
 
-CBaseTrigger = class(CBaseEntity)
+CBaseTrigger = CBaseEntity
 
 -- Disable the trigger
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBaseTrigger.Disable
@@ -6482,7 +6482,7 @@ function CBaseTrigger:IsTouching(hEnt) --[[ built-in ]] end
 
 -- No Description Set
 
-CEnvEntityMaker = class(CBaseEntity)
+CEnvEntityMaker = CBaseEntity
 
 -- Create an entity at the location of the maker
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CEnvEntityMaker.SpawnEntity
@@ -6510,7 +6510,7 @@ function CEnvEntityMaker:SpawnEntityAtNamedEntityOrigin(pszName) --[[ built-in ]
 
 -- No Description Set
 
-CDOTAVoteSystem = class({})
+CDOTAVoteSystem = {}
 
 -- Starts a vote, based upon a table of parameters
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTAVoteSystem.StartVote
@@ -6519,7 +6519,7 @@ function CDOTAVoteSystem:StartVote(handle_1) --[[ built-in ]] end
 
 -- No Description Set
 
-CMarkupVolumeTagged = class({})
+CMarkupVolumeTagged = {}
 
 -- Does this volume have the given tag.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CMarkupVolumeTagged.HasTag
@@ -6529,7 +6529,7 @@ function CMarkupVolumeTagged:HasTag(pszTagName) --[[ built-in ]] end
 
 -- No Description Set
 
-CScriptPrecacheContext = class({})
+CScriptPrecacheContext = {}
 
 -- Precaches a specific resource
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CScriptPrecacheContext.AddResource
@@ -6543,7 +6543,7 @@ function CScriptPrecacheContext:GetValue(string_1) --[[ built-in ]] end
 
 -- No Description Set
 
-CScriptKeyValues = class({})
+CScriptKeyValues = {}
 
 -- Reads a spawn key
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CScriptKeyValues.GetValue
@@ -6552,7 +6552,7 @@ function CScriptKeyValues:GetValue(string_1) --[[ built-in ]] end
 
 -- No Description Set
 
-CScriptParticleManager = class({})
+CScriptParticleManager = {}
 
 -- Creates a new particle effect
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CScriptParticleManager.CreateParticle
@@ -6625,7 +6625,7 @@ ParticleManager = CScriptParticleManager()
 
 -- No Description Set
 
-CScriptHeroList = class({})
+CScriptHeroList = {}
 
 -- Returns all the heroes in the world
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CScriptHeroList.GetAllHeroes
@@ -6646,7 +6646,7 @@ HeroList = CScriptHeroList()
 
 -- No Description Set
 
-CNativeOutputs = class({})
+CNativeOutputs = {}
 
 -- Add an output
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CNativeOutputs.AddOutput
@@ -6660,7 +6660,7 @@ function CNativeOutputs:Init(int_1) --[[ built-in ]] end
 
 -- No Description Set
 
-CEnvProjectedTexture = class(CBaseEntity)
+CEnvProjectedTexture = CBaseEntity
 
 -- Set light maximum range
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CEnvProjectedTexture.SetFarRange
@@ -6698,7 +6698,7 @@ function CEnvProjectedTexture:SetVolumetrics(bOn, flIntensity, flNoise, nPlanes,
 
 -- No Description Set
 
-CInfoData = class({})
+CInfoData = {}
 
 -- Query color data for this key
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CInfoData.QueryColor
@@ -6744,7 +6744,7 @@ function CInfoData:QueryVector(tok, vDefault) --[[ built-in ]] end
 
 -- No Description Set
 
-CPhysicsProp = class({})
+CPhysicsProp = {}
 
 -- Enable motion for the prop
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CPhysicsProp.DisableMotion
@@ -6758,7 +6758,7 @@ function CPhysicsProp:EnableMotion() --[[ built-in ]] end
 
 -- '
 
-CDOTAGamerules = class({})
+CDOTAGamerules = {}
 
 -- Add a point on the minimap.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTAGamerules.AddMinimapDebugPoint
@@ -7143,7 +7143,7 @@ GameRules = CDOTAGamerules()
 
 -- No Description Set
 
-CToneMapControllerComponent = class({})
+CToneMapControllerComponent = {}
 
 -- Gets bloomscale for this tonemap controller
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CToneMapControllerComponent.GetBloomScale
@@ -7177,7 +7177,7 @@ function CToneMapControllerComponent:SetMinExposure(float_1) --[[ built-in ]] en
 
 -- No Description Set
 
-CDebugOverlayScriptHelper = class({})
+CDebugOverlayScriptHelper = {}
 
 -- Draws an axis. Specify origin + orientation in world space.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDebugOverlayScriptHelper.Axis
@@ -7351,7 +7351,7 @@ function CDebugOverlayScriptHelper:YawArrow(Vector_1, float_2, float_3, float_4,
 
 -- Animated characters who have vertex flex capability (Hi hex6)
 
-CBaseFlex = class(CBaseAnimating)
+CBaseFlex = CBaseAnimating
 
 -- Returns the instance of the oldest active scene entity (if any).
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBaseFlex.GetCurrentScene
@@ -7366,7 +7366,7 @@ function CBaseFlex:GetSceneByIndex(index) --[[ built-in ]] end
 
 -- Choreographed scene which controls animation and/or dialog on one or more actors.
 
-CSceneEntity = class(CBaseEntity)
+CSceneEntity = CBaseEntity
 
 -- Adds a team (by index) to the broadcast list
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CSceneEntity.AddBroadcastTeamTarget
@@ -7420,7 +7420,7 @@ function CSceneEntity:Start(handle_1) --[[ built-in ]] end
 
 -- A class that can communicate with the gridnav, useful for seeing if stuff should be able to move
 
-GridNav = class({})
+GridNav = {}
 
 -- Determine if it is possible to reach the specified end point from the specified start point. bool (vStart, vEnd)
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/GridNav.CanFindPath
@@ -7484,7 +7484,7 @@ function GridNav:WorldToGridPosY(float_1) --[[ built-in ]] end
 
 -- No Description Set
 
-Convars = class({})
+Convars = {}
 
 -- GetBool(name) : returns the convar as a boolean flag.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/Convars.GetBool
@@ -7646,7 +7646,7 @@ function Vector:Normalized() --[[ built-in ]] end
 
 -- A tree on the map
 
-CDOTA_MapTree = class(CBaseEntity)
+CDOTA_MapTree = CBaseEntity
 
 -- Cuts down this tree.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_MapTree.CutDown
@@ -7673,7 +7673,7 @@ function CDOTA_MapTree:IsStanding() --[[ built-in ]] end
 
 -- An obstruction on the map that effects the gridnav
 
-CDOTA_SimpleObstruction = class(CBaseEntity)
+CDOTA_SimpleObstruction = CBaseEntity
 
 -- Returns whether the obstruction is currently active
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_SimpleObstruction.IsEnabled
@@ -7689,7 +7689,7 @@ function CDOTA_SimpleObstruction:SetEnabled(enabled, bForce) --[[ built-in ]] en
 
 -- Class for Couriers
 
-CDOTA_Unit_Courier = class(CDOTA_BaseNPC)
+CDOTA_Unit_Courier = CDOTA_BaseNPC
 
 -- Upgrade to a flying courier
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Unit_Courier.UpgradeToFlyingCourier
@@ -7698,7 +7698,7 @@ function CDOTA_Unit_Courier:UpgradeToFlyingCourier() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Ability_DataDriven = class({})
+CDOTA_Ability_DataDriven = {}
 
 -- Gets the Attack Capabilities of the unit
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_DataDriven.ApplyDataDrivenModifier
@@ -7720,7 +7720,7 @@ function CDOTA_Ability_DataDriven:ApplyDataDrivenThinker(hCaster, vLocation, psz
 
 -- No Description Set
 
-CBaseModelEntity = class({})
+CBaseModelEntity = {}
 
 -- SetLightGroup( string ): Sets the light group of the entity.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CBaseModelEntity.SetLightGroup
@@ -7755,7 +7755,7 @@ function CBaseModelEntity:SetSize(mins, maxs) --[[ built-in ]] end
 
 -- No Description Set
 
-CCustomGameEventManager = class({})
+CCustomGameEventManager = {}
 
 -- ( string EventName, func CallbackFunction ) - Register a callback to be called when a particular custom event arrives. Returns a listener ID that can be used to unregister later.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CCustomGameEventManager.RegisterListener
@@ -7785,7 +7785,7 @@ CustomGameEventManager = CCustomGameEventManager()
 
 -- No Description Set
 
-CCustomNetTableManager = class({})
+CCustomNetTableManager = {}
 
 -- ( string TableName, string KeyName )
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CCustomNetTableManager.GetTableValue
@@ -7800,7 +7800,7 @@ CustomNetTables = CCustomNetTableManager()
 
 -- Methods shown here include code examples
 
-CDOTATutorial = class({})
+CDOTATutorial = {}
 
 -- Add a computer controlled bot.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTATutorial.AddBot
@@ -7930,7 +7930,7 @@ Tutorial = CDOTATutorial()
 
 -- No Description Set
 
-CDOTA_Ability_Lua = class({})
+CDOTA_Ability_Lua = {}
 
 -- Determine whether an issued command with no target is valid.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Ability_Lua.CastFilterResult
@@ -8189,7 +8189,7 @@ function CDOTA_Ability_Lua:SpeakTrigger() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_CustomUIManager = class({})
+CDOTA_CustomUIManager = {}
 
 -- Create a new custom UI HUD element for the specified player(s). ( int PlayerID /*-1 means everyone*/, string ElementID /* should be unique */, string LayoutFileName, table DialogVariables /* can be nil */ )
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_CustomUIManager.DynamicHud_Create
@@ -8213,7 +8213,7 @@ function CDOTA_CustomUIManager:DynamicHud_SetVisible(int_1, string_2, bool_3) --
 
 -- No Description Set
 
-CPropHMDAvatar = class({})
+CPropHMDAvatar = {}
 
 -- Get VR hand by ID
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CPropHMDAvatar.GetVRHand
@@ -8223,7 +8223,7 @@ function CPropHMDAvatar:GetVRHand(nHandID) --[[ built-in ]] end
 
 -- No Description Set
 
-CPropVRHand = class({})
+CPropVRHand = {}
 
 -- Get the attachment on this hand
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CPropVRHand.GetAttachment
@@ -8238,7 +8238,7 @@ function CPropVRHand:SetAttachment(hAttachment) --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Buff = class({})
+CDOTA_Buff = {}
 
 -- (index, bDestroyImmediately, bStatusEffect, priority, bHeroEffect, bOverheadEffect
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Buff.AddParticle
@@ -8338,7 +8338,7 @@ function CDOTA_Buff:StartIntervalThink(flInterval) --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Modifier_Lua = class({})
+CDOTA_Modifier_Lua = {}
 
 -- True/false if this modifier is active on illusions.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Modifier_Lua.AllowIllusionDuplicate
@@ -8506,7 +8506,7 @@ function CDOTA_Modifier_Lua:StatusEffectPriority() --[[ built-in ]] end
 
 -- No Description Set
 
-CDOTA_Modifier_Lua_Horizontal_Motion = class({})
+CDOTA_Modifier_Lua_Horizontal_Motion = {}
 
 -- Starts the horizontal motion controller effects for this buff. Returns true if successful.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Modifier_Lua_Horizontal_Motion.ApplyHorizontalMotionController
@@ -8538,7 +8538,7 @@ function CDOTA_Modifier_Lua_Horizontal_Motion:UpdateHorizontalMotion(me, dt) --[
 
 -- No Description Set
 
-CDOTA_Modifier_Lua_Motion_Both = class({})
+CDOTA_Modifier_Lua_Motion_Both = {}
 
 -- Starts the horizontal motion controller effects for this buff. Returns true if successful.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Modifier_Lua_Motion_Both.ApplyHorizontalMotionController
@@ -8587,7 +8587,7 @@ function CDOTA_Modifier_Lua_Motion_Both:UpdateVerticalMotion(me, dt) --[[ built-
 
 -- No Description Set
 
-CDOTA_Modifier_Lua_Vertical_Motion = class({})
+CDOTA_Modifier_Lua_Vertical_Motion = {}
 
 -- Starts the vertical motion controller effects for this buff. Returns true if successful.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Modifier_Lua_Vertical_Motion.ApplyVerticalMotionController
@@ -8619,7 +8619,7 @@ function CDOTA_Modifier_Lua_Vertical_Motion:UpdateVerticalMotion(me, dt) --[[ bu
 
 -- No Description Set
 
-CDOTA_Item_Lua = class({})
+CDOTA_Item_Lua = {}
 
 -- Determine whether an issued command with no target is valid.
 ---@see https://developer.valvesoftware.com/wiki/Dota_2_Workshop_Tools/Scripting/API/CDOTA_Item_Lua.CastFilterResult
